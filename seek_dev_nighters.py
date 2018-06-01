@@ -35,6 +35,8 @@ def get_solution_attempts_info():
 
 
 def main():
+    print('Getting info about solution attempts...')
+
     solution_attempts_info = get_solution_attempts_info()
 
 
