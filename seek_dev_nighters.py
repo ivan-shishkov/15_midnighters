@@ -38,7 +38,7 @@ def get_solution_attempts_info():
         page_number = page_number + 1
 
 
-def is_time_after_midnight(timestamp, timezone_info):
+def is_nighttime_after_midnight(timestamp, timezone_info):
     user_timezone = timezone(timezone_info)
     utc_time = datetime.fromtimestamp(timestamp, utc)
     user_time = utc_time.astimezone(user_timezone)
@@ -60,7 +60,7 @@ def get_midnighters_info(solution_attempts_info):
         username = solution_attempt_info['username']
         timezone_info = solution_attempt_info['timezone']
 
-        if is_time_after_midnight(timestamp, timezone_info):
+        if is_nighttime_after_midnight(timestamp, timezone_info):
             midnighters_info.add(username)
 
     return midnighters_info
