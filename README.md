@@ -1,6 +1,6 @@
 # Night Owls Detector
 
-[TODO. There will be project description]
+This script allows to get info about Devman users who send their solutions of tasks after midnight.
 
 # Project Goals
 
