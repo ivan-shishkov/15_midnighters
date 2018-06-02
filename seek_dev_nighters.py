@@ -66,6 +66,19 @@ def get_midnighters_info(solution_attempts_info):
     return midnighters_info
 
 
+def print_midnighters_info(midnighters_info):
+    print()
+    print('Devman users who send their solutions after midnight:')
+    print()
+
+    if not midnighters_info:
+        print('Nobody send their solutions after midnight')
+        return
+
+    for midnighter_info in sorted(midnighters_info):
+        print(midnighter_info)
+
+
 def main():
     print('Getting info about solution attempts...')
 
@@ -74,7 +87,9 @@ def main():
     if solution_attempts_info is None:
         sys.exit('Could not get info about solution attempts')
 
-    midnighters_info = get_midnighters_info(solution_attempts_info)
+    print_midnighters_info(
+        midnighters_info=get_midnighters_info(solution_attempts_info)
+    )
 
 
 if __name__ == '__main__':
