@@ -41,15 +41,15 @@ def get_solution_attempts_info():
 def is_nighttime_after_midnight(timestamp, timezone_info):
     user_timezone = timezone(timezone_info)
     utc_time = datetime.fromtimestamp(timestamp, utc)
-    user_time = utc_time.astimezone(user_timezone)
+    user_local_time = utc_time.astimezone(user_timezone)
 
     midnight_time = datetime(
-        year=user_time.year,
-        month=user_time.month,
-        day=user_time.day,
-        tzinfo=user_time.tzinfo,
+        year=user_local_time.year,
+        month=user_local_time.month,
+        day=user_local_time.day,
+        tzinfo=user_local_time.tzinfo,
     )
-    return midnight_time < user_time < midnight_time + timedelta(hours=6)
+    return midnight_time < user_local_time < midnight_time + timedelta(hours=6)
 
 
 def get_midnighters_info(solution_attempts_info):
