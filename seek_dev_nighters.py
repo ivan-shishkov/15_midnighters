@@ -1,5 +1,5 @@
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import requests
 from requests.exceptions import ConnectionError
@@ -32,18 +32,13 @@ def get_solution_attempts_info():
         page_number = page_number + 1
 
 
-def is_nighttime_after_midnight(timestamp, timezone_info):
+def is_nighttime_after_midnight(
+        timestamp, timezone_info, midnight_hour=0, morning_hour=6):
     user_timezone = timezone(timezone_info)
     utc_time = datetime.fromtimestamp(timestamp, utc)
     user_local_time = utc_time.astimezone(user_timezone)
 
-    midnight_time = datetime(
-        year=user_local_time.year,
-        month=user_local_time.month,
-        day=user_local_time.day,
-        tzinfo=user_local_time.tzinfo,
-    )
-    return midnight_time < user_local_time < midnight_time + timedelta(hours=6)
+    return midnight_hour <= user_local_time.hour < morning_hour
 
 
 def get_midnighters_info(solution_attempts_info):
