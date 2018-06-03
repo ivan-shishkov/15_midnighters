@@ -9,10 +9,9 @@ from pytz import timezone, utc
 def execute_get_request(url, params=None):
     try:
         response = requests.get(url, params=params)
+        return response.json() if response.ok else None
     except ConnectionError:
         return None
-
-    return response.json() if response.ok else None
 
 
 def get_solution_attempts_info():
