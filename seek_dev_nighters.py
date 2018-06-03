@@ -66,9 +66,7 @@ def get_midnighters_info(solution_attempts_info):
 
 
 def print_midnighters_info(midnighters_info):
-    print()
-    print('Devman users who send their solutions after midnight:')
-    print()
+    print('\nDevman users who send their solutions after midnight:\n')
 
     if not midnighters_info:
         print('Nobody send their solutions after midnight')
