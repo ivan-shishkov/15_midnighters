@@ -3,7 +3,7 @@ from datetime import datetime
 
 import requests
 from requests.exceptions import ConnectionError
-from pytz import timezone, utc
+from pytz import timezone
 
 
 def execute_get_request(url, params=None):
@@ -34,10 +34,10 @@ def get_solution_attempts_info():
 
 def is_nighttime_after_midnight(
         timestamp, timezone_info, midnight_hour=0, morning_hour=6):
-    user_timezone = timezone(timezone_info)
-    utc_time = datetime.fromtimestamp(timestamp, utc)
-    user_local_time = utc_time.astimezone(user_timezone)
-
+    user_local_time = datetime.fromtimestamp(
+        timestamp,
+        tz=timezone(timezone_info),
+    )
     return midnight_hour <= user_local_time.hour < morning_hour
 
 
